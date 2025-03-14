@@ -4,3 +4,5 @@ bsky.exe
 tmp
 *.sh
 .DS_Store
+result
+.direnv/

@@ -84,6 +84,36 @@ Or install with go install command.
 go install github.com/mattn/bsky@latest
 ```
 
+### Using Nix
+
+If you have Nix with flakes enabled, you can install and run bsky directly:
+
+```bash
+# Run without installing (replace YOUR_USERNAME with your GitHub username)
+nix run github:tebuevd/bsky
+
+# Install to your profile
+nix profile install github:tebuevd/bsky
+
+# For development
+git clone https://github.com/tebuevd/bsky.git
+cd bsky
+nix develop # Provides a shell with all development dependencies
+```
+
+For Nix users who want to integrate it into their configurations:
+
+```nix
+# In your flake.nix inputs:
+inputs.bsky.url = "github:tebuevd/bsky";
+
+# In your configuration:
+environment.systemPackages = [ inputs.bsky.packages.${system}.default ];
+
+# Or in home-manager:
+home.packages = [ inputs.bsky.packages.${system}.default ];
+```
+
 ### To enable Autocomplete
 
 Download the correct file from `/scripts` directory and add the following line to your shell configuration file.
